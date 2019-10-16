@@ -1,0 +1,18 @@
+---
+LAN:
+  - name: "GigabitEthernet2/0"
+    description: "{{ g2_0.description }}"
+    ip: "{{ g2_0.ip }}"
+    mask: "{{ g1_0.mask }}"
+    
+management:
+  - name: "FastEthernet0/0"
+    description: "{{ fa0_0.description }}"
+    ip: "{{ fa0_0.ip }}"
+    mask: "{{ fa0_0.mask  }}"
+
+backbone1:
+  - name: "GigabitEthernet1/0"
+    description: "{{ g1_0.description }}"
+    ip: "{{ g1_0.ip }}"
+    mask: "{{ g1_0.mask }}"

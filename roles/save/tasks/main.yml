@@ -1,0 +1,6 @@
+---
+- name: Cisco | Save Config 
+  ios_config:
+    provider: "{{ provider }}"
+    timeout: 40
+    save_when: modified

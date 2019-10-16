@@ -1,0 +1,53 @@
+---
+- name: Cisco | Set Hostname
+  ios_system:
+    provider: "{{ provider }}"
+    hostname: "{{ inventory_hostname }}"
+
+- name: Cisco | Configure LAN Interfaces
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - description {{ item.description }}
+    - ip address {{ item.ip }} {{item.mask}}
+    parents: "interface {{ item.name }}"
+  with_items: "{{ LAN }}"
+  tags: LAN
+
+- name: Cisco | Config Manangement LAN
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - description {{ item.description }}
+    - ip address {{ item.ip }} {{ item.mask }}
+    parents: "interface {{ item.name }}"
+  with_items: "{{ management }}"
+  tags: managementlan
+
+- name: Cisco | Bring Management Interfaces up
+  ios_interface:
+    provider: "{{ provider }}"
+    name: FastEthernet0/0
+    enabled: True
+
+- name: Cisco | Configure Backbone Interfaces
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - description {{ item.description }}
+    - ip address {{ item.ip }} {{ item.mask }}
+    parents: "interface {{ item.name }}"
+  with_items: "{{ backbone1 }}"
+  tags: backbone
+  
+- name: Cisco | Bring backbone up
+  ios_interface:
+    provider: "{{ provider }}"
+    name: GigabitEthernet1/0
+    enabled: True  
+
+- name: Cisco | Bring LAN up
+  ios_interface:
+    provider: "{{ provider }}"
+    name: GigabitEthernet2/0
+    enabled: True

@@ -1,0 +1,9 @@
+---
+provider:
+  host: "{{ ansible_host }}"
+  username: admin
+  password: admin
+  authorize: yes
+  
+
+  

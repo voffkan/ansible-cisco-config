@@ -1,0 +1,11 @@
+---
+- name: Global Configs
+  hosts: all
+  gather_facts: yes
+  connection: local
+
+  roles:
+    - global # common configs
+    - ospf   # OSPF config
+    - ping   # ping test
+    - save   # Save config

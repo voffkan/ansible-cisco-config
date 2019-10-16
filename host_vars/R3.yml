@@ -1,0 +1,15 @@
+---
+g2_0:
+  description: "LAN"
+  ip: 10.0.2.1
+  mask: 255.255.255.0
+
+fa0_0:
+  description: "Manangement LAN"
+  ip: 192.168.100.252
+  mask: 255.255.255.0
+
+g1_0:
+  description: "Backbone 1"
+  ip: 172.16.16.3
+  mask: 255.255.255.192

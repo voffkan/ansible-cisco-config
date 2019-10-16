@@ -1,0 +1,17 @@
+---
+- name: Cisco | Enable OSPF Area 0
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - network 172.16.16.0 0.0.0.63 area 0.0.0.0
+    - network 192.168.100.0 0.0.0.255 area 0.0.0.0
+    - network 10.0.1.1 0.0.0.255 area 0.0.0.0
+    - network 10.0.2.1 0.0.0.255 area 0.0.0.0
+    - network 10.0.3.1 0.0.0.255 area 0.0.0.0
+    - network 10.0.4.1 0.0.0.255 area 0.0.0.0
+    - log-adjacency-changes
+    - router-id {{ item.ip }}
+    - passive-interface GigabitEthernet2/0
+    parents: "router ospf 1"
+  with_items: "{{ LAN }}"
+  tags: backbone-ospf

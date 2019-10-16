@@ -1,0 +1,6 @@
+- name: Cisco | Ping - check connectivity OK?
+  ios_ping:
+    provider: "{{ provider }}"
+    dest: "{{ item.ip }}"
+  with_items: "{{ backbone1 }}"
+  tags: ping
